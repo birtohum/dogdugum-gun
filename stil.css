@@ -1,0 +1,79 @@
+:root {
+  --zemin: #f6f4ef; --kart: #ffffff; --yazi: #17191d; --soluk: #646a73; --cizgi: #e2ded5;
+  --vurgu: #c2410c; --sicak: #c2410c; --soguk: #1d4ed8; --nokta: #9aa0a8;
+  --gun-zemin: #fff7ed;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --zemin: #101216; --kart: #171a20; --yazi: #eceef1; --soluk: #9aa1ab; --cizgi: #272b33;
+    --vurgu: #fb923c; --sicak: #fb923c; --soguk: #60a5fa; --nokta: #5d646e;
+    --gun-zemin: #1c1712;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--zemin); color: var(--yazi); font: 16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 880px; margin: 0 auto; padding: 48px 20px 40px; }
+a { color: inherit; }
+
+.ust-etiket { margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--vurgu); }
+h1 { margin: 0 0 26px; font-size: clamp(40px, 8vw, 72px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; }
+.form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.form label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; color: var(--soluk); font-weight: 500; }
+.form input, .form select, button {
+  font: inherit; font-size: 16px; height: 46px; padding: 0 14px; border-radius: 10px;
+  border: 1px solid var(--cizgi); background: var(--kart); color: var(--yazi);
+}
+.form input { min-width: 180px; }
+.form select { min-width: 190px; }
+button { background: var(--yazi); color: var(--zemin); border-color: var(--yazi); font-weight: 600; cursor: pointer; padding: 0 22px; }
+button.ikincil { background: transparent; color: var(--yazi); border-color: var(--cizgi); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--vurgu); outline-offset: 2px; }
+.ornek-not { margin: 12px 0 0; font-size: 13px; color: var(--soluk); min-height: 1.4em; }
+
+.sonuc { margin-top: 36px; transition: opacity .2s; }
+.sonuc.yukleniyor { opacity: .45; }
+.gun { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 28px 30px; border-radius: 16px; background: var(--gun-zemin); border: 1px solid var(--cizgi); }
+.gun-tarih { margin: 0; font-weight: 600; font-size: 17px; }
+.gun-derece { margin: 2px 0 0; font-size: clamp(76px, 15vw, 128px); line-height: 1; font-weight: 800; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+.gun-derece small { font-size: .32em; font-weight: 600; letter-spacing: 0; margin-left: 4px; vertical-align: .9em; color: var(--soluk); }
+.gun-durum { margin: 8px 0 0; font-size: 18px; color: var(--soluk); }
+.gun-sag { margin: 0; display: grid; gap: 12px; min-width: 150px; }
+.gun-sag div { display: flex; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--cizgi); padding-bottom: 8px; }
+.gun-sag dt { color: var(--soluk); font-size: 14px; }
+.gun-sag dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.cumle { font-size: 19px; line-height: 1.5; margin: 22px 2px 0; max-width: 720px; }
+.cumle b { font-weight: 700; }
+
+.blok { margin-top: 46px; }
+h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: -0.015em; }
+.alt { margin: 0 0 14px; color: var(--soluk); font-size: 14px; }
+.buyuk { margin: 6px 0 4px; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.grafik svg { display: block; width: 100%; height: auto; overflow: visible; }
+.grafik text { fill: var(--soluk); font-size: 11px; font-family: inherit; }
+.grafik .eksen { stroke: var(--cizgi); }
+.grafik .nokta { fill: var(--nokta); }
+.grafik .nokta.sen { fill: var(--vurgu); }
+.grafik .egilim { stroke: var(--yazi); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .55; }
+.grafik .etiket { fill: var(--yazi); font-weight: 600; font-size: 12px; }
+
+.seritler { display: flex; height: 120px; border-radius: 10px; overflow: hidden; }
+.seritler i { flex: 1; display: block; }
+.serit-eksen { display: flex; justify-content: space-between; font-size: 12px; color: var(--soluk); margin-top: 6px; }
+
+.paylas { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.paylas .alt { margin: 0; }
+
+.dip { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--cizgi); font-size: 13px; color: var(--soluk); }
+.dip p { margin: 0 0 10px; max-width: 760px; }
+.hata { color: var(--vurgu); }
+
+@media (max-width: 620px) {
+  main { padding: 32px 16px 32px; }
+  .form label { flex: 1 1 100%; }
+  .form input, .form select { min-width: 0; width: 100%; }
+  .form button { width: 100%; }
+  .gun { grid-template-columns: 1fr; padding: 22px 20px; gap: 16px; }
+  .cumle { font-size: 17px; }
+  .seritler { height: 84px; }
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doğduğun gün hava nasıldı?</title>
+<meta name="description" content="Doğum tarihini ve ilini seç: o gün hava kaç dereceydi, yağmur yağdı mı, o günden beri şehrin ne kadar ısındı. Veri: Open-Meteo, ERA5 yeniden analizi.">
+<meta property="og:title" content="Doğduğun gün hava nasıldı?">
+<meta property="og:description" content="1940'tan bugüne 81 il için doğum gününün havası ve o günden beri ısınma.">
+<meta property="og:image" content="https://birtohum.github.io/dogdugum-gun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stil.css?v=1">
+</head>
+<body>
+<main>
+  <header class="ust">
+    <p class="ust-etiket">1940'tan bugüne · 81 il</p>
+    <h1>Doğduğun gün<br>hava nasıldı?</h1>
+    <form id="form" class="form" autocomplete="off">
+      <label><span>Doğum tarihi</span><input type="date" id="tarih" min="1940-01-01" required></label>
+      <label><span>Doğduğun il</span><select id="il" required></select></label>
+      <button type="submit">Göster</button>
+    </form>
+    <p class="ornek-not" id="ornekNot">Örnek olarak bugünden 30 yıl öncesi gösteriliyor. Kendi tarihini gir.</p>
+  </header>
+
+  <section id="sonuc" class="sonuc" aria-live="polite">
+    <div class="gun" id="gunKart">
+      <div class="gun-sol">
+        <p class="gun-tarih" id="gTarih">…</p>
+        <p class="gun-derece"><span id="gDerece">–</span><small>°C</small></p>
+        <p class="gun-durum" id="gDurum"></p>
+      </div>
+      <dl class="gun-sag">
+        <div><dt>En yüksek</dt><dd id="gMax">–</dd></div>
+        <div><dt>En düşük</dt><dd id="gMin">–</dd></div>
+        <div><dt>Yağış</dt><dd id="gYagis">–</dd></div>
+      </dl>
+    </div>
+    <p class="cumle" id="cumle"></p>
+
+    <div class="blok">
+      <h2>Sonraki her doğum gününde</h2>
+      <p class="alt" id="dgAlt">Her yıl aynı gün, gündüzün en yüksek sıcaklığı.</p>
+      <div class="grafik" id="dgGrafik"></div>
+    </div>
+
+    <div class="blok">
+      <h2>O günden beri şehir ısındı mı?</h2>
+      <p class="buyuk" id="isinma"></p>
+      <p class="alt" id="isinmaAlt"></p>
+      <div class="seritler" id="seritler"></div>
+      <div class="serit-eksen"><span id="sBas"></span><span id="sSon"></span></div>
+    </div>
+
+    <div class="paylas">
+      <button type="button" id="paylasBtn">Kartı paylaş</button>
+      <button type="button" id="baglantiBtn" class="ikincil">Bağlantıyı kopyala</button>
+      <span id="paylasNot" class="alt"></span>
+    </div>
+  </section>
+
+  <footer class="dip">
+    <p><b>Veri:</b> <a href="https://open-meteo.com/">Open-Meteo</a> geçmiş hava arşivi (CC BY 4.0), ECMWF ERA5 yeniden analizi. Bu bir istasyon ölçümü değil; ilin merkezini içeren yaklaşık 10–25 km'lik ızgara hücresinin hesaplanmış değeri. Tek bir günün sıcaklığı istasyon kaydından 1–3 °C farklı olabilir; uzun dönem eğilimi daha güvenilirdir.</p>
+    <p>Isınma, doğduğun yıldan son tamamlanan yıla kadar yıllık ortalamalara uydurulan doğrusal eğilimdir. Son günler arşive birkaç gün gecikmeyle girer. Girdiğin tarih hiçbir yere kaydedilmez; yalnız Open-Meteo'ya sorgu olarak gider.</p>
+    <p><a href="https://github.com/birtohum/dogdugum-gun">Kaynak kodu</a> · <a href="https://birtohum.github.io/">birtohum</a></p>
+  </footer>
+</main>
+<script src="uygulama.js?v=1"></script>
+</body>
+</html>
