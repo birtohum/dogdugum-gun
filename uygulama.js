@@ -73,7 +73,7 @@ async function veriGetir(il, iso) {
     timezone: "Europe/Istanbul",
   });
   const r = await fetch(u);
-  if (!r.ok) throw new Error("Open-Meteo yanıt vermedi (" + r.status + ")");
+  if (!r.ok) throw new Error(r.status === 429 ? "Hava verisi servisi şu an çok yoğun. Bir dakika sonra yeniden dene." : "Hava verisi servisi yanıt vermedi. Biraz sonra yeniden dene.");
   const j = await r.json();
   const d = j.daily;
   // sondaki boş günleri at
@@ -98,7 +98,7 @@ function egim(xs, ys) {
 
 function hesapla(v, iso) {
   const i = v.t.indexOf(iso);
-  if (i < 0) return null;
+  if (i < 0 || v.ort[i] == null || v.max[i] == null || v.min[i] == null) return null;
   const [y, m, g] = iso.split("-").map(Number);
   const gun = { max: v.max[i], min: v.min[i], ort: v.ort[i], yag: v.yag[i], kod: v.kod[i], kar: v.kar[i] };
 
@@ -198,7 +198,7 @@ function goster(il, iso, h) {
   if (h.dg.length >= 3) {
     const sirali = [...h.dg].sort((a, b) => b.max - a.max);
     const en = sirali[0], enAz = sirali[sirali.length - 1];
-    c += ` En sıcak doğum günün <b>${en.yil}</b> (${sayi(en.max)} °C), en soğuğu <b>${enAz.yil}</b> (${sayi(enAz.max)} °C).`;
+    c += ` Gündüzün en yüksek sıcaklığına göre en sıcak doğum günün <b>${en.yil}</b> (${sayi(en.max)} °C), en soğuğu <b>${enAz.yil}</b> (${sayi(enAz.max)} °C).`;
   }
   $("cumle").innerHTML = c;
   $("dgAlt").textContent = `${h.dg.length} doğum günü, her yıl aynı gün gündüzün en yüksek sıcaklığı. Turuncu nokta doğduğun gün; kesikli çizgi eğilim.`;
@@ -225,7 +225,7 @@ async function calistir(ilNo, iso, ornek) {
   try {
     const v = await veriGetir(il, iso);
     const h = hesapla(v, iso);
-    if (!h) throw new Error("Bu tarih için veri yok. 1 Ocak 1940 ile bir hafta öncesi arasında bir gün seç.");
+    if (!h) throw new Error("Bu tarih için veri yok. 2 Ocak 1940 ile bir hafta öncesi arasında bir gün seç.");
     goster(il, iso, h);
     if (!ornek) {
       $("ornekNot").textContent = "";
