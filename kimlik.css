@@ -1,0 +1,6 @@
+:root{--zemin:#eaf4fb;--kart:#fff;--yazi:#0d2b45;--soluk:#4d6a82;--cizgi:#c9dfee;--vurgu:#e4572e}
+body{font-family:Figtree,sans-serif;background:linear-gradient(180deg,#bfe2f7 0,#eaf4fb 420px)}
+h1{font-family:Fraunces,Georgia,serif;font-weight:800;font-size:clamp(46px,8.6vw,96px);letter-spacing:-.025em;line-height:1}
+h2{font-family:Fraunces,Georgia,serif}
+h1{text-wrap:balance}
+.dip{border-top:1px solid var(--cizgi)}
